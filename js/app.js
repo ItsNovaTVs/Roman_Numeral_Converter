@@ -129,3 +129,38 @@ $("quizCheckBtn").addEventListener("click", checkQuizAnswer);
 $("quizNextBtn").addEventListener("click", newQuizQuestion);
 $("quizAnswer").addEventListener("keydown", event => { if (event.key === "Enter") checkQuizAnswer(); });
 newQuizQuestion();
+
+const dateInput = $("dateInput");
+const dateResult = $("dateResult");
+
+function convertDate() {
+  if (!dateInput.value) {
+    dateResult.innerHTML = '<p class="status error">Choose a date first.</p>';
+    return;
+  }
+
+  const parts = dateInput.value.split("-").map(Number);
+  const year = parts[0];
+  if (!Number.isInteger(year) || year < 1 || year > 3999) {
+    dateResult.innerHTML = '<p class="status error">Roman year output currently supports years 1–3,999.</p>';
+    return;
+  }
+
+  const converted = toRoman(year);
+  if (converted.error) {
+    dateResult.innerHTML = '<p class="status error">'+converted.error+'</p>';
+    return;
+  }
+
+  const date = new Date(dateInput.value + "T12:00:00");
+  const formatted = new Intl.DateTimeFormat(undefined, {
+    weekday: "long", year: "numeric", month: "long", day: "numeric"
+  }).format(date);
+
+  dateResult.innerHTML =
+    '<p class="date-primary">'+converted.roman+'</p>' +
+    '<p class="date-secondary">'+formatted+'</p>';
+}
+
+$("dateConvertBtn").addEventListener("click", convertDate);
+dateInput.addEventListener("change", convertDate);
