@@ -1,7 +1,9 @@
 [object Object]
-.quiz-card{margin-top:18px;background:#1d1d1d;border:1px solid #303030;border-radius:16px;padding:22px;box-shadow:0 12px 35px rgba(0,0,0,.25)}
-.quiz-prompt{font-size:1.25rem;font-weight:700;margin:18px 0}
-.quiz-answer-row{display:flex;gap:8px}
-.quiz-answer-row input{min-width:0;flex:1}
-.quiz-score{margin-top:10px;color:#888;font-size:.85rem}
-@media(max-width:520px){.quiz-answer-row{flex-wrap:wrap}.quiz-answer-row input{flex-basis:100%}.quiz-answer-row button{flex:1}}
+.date-card{margin-top:18px;background:#1d1d1d;border:1px solid #303030;border-radius:16px;padding:22px;box-shadow:0 12px 35px rgba(0,0,0,.25)}
+.date-controls{margin-top:14px}
+.date-input-row{display:flex;gap:8px;margin-top:7px}
+.date-input-row input{min-width:0;flex:1}
+.date-result{margin-top:14px;min-height:60px}
+.date-primary{font-size:1.25rem;font-weight:800}
+.date-secondary{color:#aaa}
+@media(max-width:520px){.date-input-row{flex-wrap:wrap}.date-input-row input{flex-basis:100%}}
