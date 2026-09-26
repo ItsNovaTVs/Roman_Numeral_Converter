@@ -94,3 +94,38 @@ function exploreNumber() {
 $("exploreBtn").addEventListener("click", exploreNumber);
 explorerNumber.addEventListener("keydown", event => { if (event.key === "Enter") exploreNumber(); });
 exploreNumber();
+
+let quizNumber = 0;
+let quizCorrect = 0;
+let quizTotal = 0;
+
+function newQuizQuestion() {
+  quizNumber = Math.floor(Math.random() * 3999) + 1;
+  $("quizPrompt").textContent = "Convert "+quizNumber.toLocaleString()+" to a Roman numeral.";
+  $("quizAnswer").value = "";
+  $("quizStatus").textContent = "";
+  $("quizStatus").className = "status";
+  $("quizAnswer").focus();
+}
+
+function checkQuizAnswer() {
+  const answer = $("quizAnswer").value.trim();
+  if (!answer) return;
+  const expected = toRoman(quizNumber).roman;
+  quizTotal += 1;
+  if (answer.toUpperCase() === expected) {
+    quizCorrect += 1;
+    $("quizStatus").textContent = "Correct! 🎉";
+    $("quizStatus").className = "status success";
+  } else {
+    $("quizStatus").textContent = "Not quite — the answer is "+expected+".";
+    $("quizStatus").className = "status error";
+  }
+  $("quizScore").textContent = quizCorrect;
+  $("quizTotal").textContent = quizTotal;
+}
+
+$("quizCheckBtn").addEventListener("click", checkQuizAnswer);
+$("quizNextBtn").addEventListener("click", newQuizQuestion);
+$("quizAnswer").addEventListener("keydown", event => { if (event.key === "Enter") checkQuizAnswer(); });
+newQuizQuestion();
