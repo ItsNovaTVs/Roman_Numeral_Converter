@@ -6,12 +6,12 @@ export function tokenizeRoman(input) {
   const tokens = []; let i = 0;
   while (i < cleaned.length) {
     const char = cleaned[i];
-    if (ROMAN_VALUES[char] === undefined) { if (/\\s/.test(char)) { i++; continue; } return { error: "Invalid character detected: " + char }; }
+    if (ROMAN_VALUES[char] === undefined) { if (/\s/.test(char)) { i++; continue; } return { error: "Invalid character detected: " + char }; }
     let macrons = 0; let j = i + 1;
-    while (cleaned[j] === "\\u0304") { macrons++; j++; }
+    while (cleaned[j] === "\u0304") { macrons++; j++; }
     if (macrons > 4) return { error: "A symbol cannot have more than 4 macrons." };
     if (char === "I" && macrons > 0) return { error: "The letter I cannot take macrons." };
-    tokens.push({ symbol: char + "\\u0304".repeat(macrons), base: char, macrons, value: ROMAN_VALUES[char] * 1000 ** macrons });
+    tokens.push({ symbol: char + "\u0304".repeat(macrons), base: char, macrons, value: ROMAN_VALUES[char] * 1000 ** macrons });
     i = j;
   }
   return { tokens };
