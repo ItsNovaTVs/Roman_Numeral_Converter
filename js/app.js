@@ -51,11 +51,11 @@ $("clearHistoryBtn").addEventListener("click", () => { localStorage.removeItem(H
 input.addEventListener("input", () => handleConversion(false)); input.addEventListener("keydown", event => { if (event.key === "Enter") handleConversion(); });
 macronBtn.addEventListener("click", () => {
   const cursor = input.selectionStart ?? input.value.length, value = input.value; let base = -1;
-  for (let i = cursor - 1; i >= 0; i--) { if ("IVXLCDM".includes(value[i].toUpperCase())) { base = i; break; } if (value[i] !== "\\u0304") break; }
+  for (let i = cursor - 1; i >= 0; i--) { if ("IVXLCDM".includes(value[i].toUpperCase())) { base = i; break; } if (value[i] !== "\u0304") break; }
   if (base < 0) { setStatus("Place the cursor after a Roman numeral letter first.", "error"); return; }
   if (value[base].toUpperCase() === "I") { setStatus("The letter I cannot take macrons in this converter.", "error"); return; }
-  let count = 0; while (value[base + 1 + count] === "\\u0304") count++;
+  let count = 0; while (value[base + 1 + count] === "\u0304") count++;
   if (count >= 4) { setStatus("A symbol cannot have more than 4 macrons.", "error"); return; }
-  const insertAt = base + 1 + count; input.value = value.slice(0, insertAt) + "\\u0304" + value.slice(insertAt); input.setSelectionRange(insertAt + 1, insertAt + 1); input.focus(); handleConversion(false);
+  const insertAt = base + 1 + count; input.value = value.slice(0, insertAt) + "\u0304" + value.slice(insertAt); input.setSelectionRange(insertAt + 1, insertAt + 1); input.focus(); handleConversion(false);
 });
 updateModeButtons(); renderHistory(); handleConversion(false);
