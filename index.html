@@ -13,5 +13,22 @@
 <div id="resultContainer" class="result" aria-live="polite"><span class="result-label">Result</span><strong id="outputValue">—</strong><p id="statusMessage" class="status">Enter a Roman numeral.</p><button id="copyBtn" class="copy" type="button">Copy result</button></div>
 <div class="breakdown-card"><h3>Breakdown</h3><div id="breakdown" class="breakdown" aria-live="polite"></div><p class="hint">Example: <strong>MCMXLIV</strong> = 1000 + 900 + 40 + 4.</p></div>
 </section>
+<section class="explorer-card" aria-labelledby="explorerHeading">
+  <div class="section-heading"><h2 id="explorerHeading">Number explorer</h2><span class="section-note">1–3,999</span></div>
+  <div class="explorer-controls">
+    <label for="explorerNumber">Explore a number</label>
+    <div class="explorer-input-row">
+      <input id="explorerNumber" type="number" min="1" max="3999" step="1" value="2026" inputmode="numeric">
+      <button id="exploreBtn" class="primary" type="button">Explore</button>
+    </div>
+  </div>
+  <div id="explorerResult" class="explorer-result" aria-live="polite"></div>
+</section>
+
+<section class="reference-card" aria-labelledby="referenceHeading">
+  <div class="section-heading"><h2 id="referenceHeading">Roman numeral reference</h2><span class="section-note">Core symbols</span></div>
+  <div class="reference-grid" id="referenceGrid"></div>
+</section>
+
 <section class="history-card" aria-labelledby="historyHeading"><div class="section-heading"><h2 id="historyHeading">Recent conversions</h2><button id="clearHistoryBtn" type="button" class="text-button">Clear history</button></div><ul id="historyList" class="history-list"></ul><p class="privacy-note">History stays in this browser using local storage.</p></section>
 </main><script type="module" src="js/app.js"></script></body></html>
