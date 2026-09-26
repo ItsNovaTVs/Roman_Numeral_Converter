@@ -59,3 +59,38 @@ macronBtn.addEventListener("click", () => {
   const insertAt = base + 1 + count; input.value = value.slice(0, insertAt) + "\u0304" + value.slice(insertAt); input.setSelectionRange(insertAt + 1, insertAt + 1); input.focus(); handleConversion(false);
 });
 updateModeButtons(); renderHistory(); handleConversion(false);
+const referenceSymbols = [["I",1],["V",5],["X",10],["L",50],["C",100],["D",500],["M",1000]];
+const referenceGrid = $("referenceGrid");
+referenceGrid.innerHTML = referenceSymbols.map(([symbol,value]) =>
+  '<div class="reference-item"><span class="reference-symbol">'+symbol+'</span><span class="reference-value">'+value.toLocaleString()+'</span></div>'
+).join("");
+
+const explorerNumber = $("explorerNumber");
+const explorerResult = $("explorerResult");
+
+function exploreNumber() {
+  const value = Number(explorerNumber.value);
+  if (!Number.isInteger(value) || value < 1 || value > 3999) {
+    explorerResult.innerHTML = '<p class="status error">Enter a whole number from 1 to 3,999.</p>';
+    return;
+  }
+
+  const converted = toRoman(value);
+  if (converted.error) {
+    explorerResult.innerHTML = '<p class="status error">'+converted.error+'</p>';
+    return;
+  }
+
+  const parsed = validateRoman(converted.roman);
+  const tokens = parsed.tokens || [];
+  explorerResult.innerHTML =
+    '<p class="explorer-number">'+value.toLocaleString()+'</p>' +
+    '<p class="explorer-roman">'+converted.roman+'</p>' +
+    '<div class="explorer-breakdown">' +
+      tokens.map(token => '<span class="explorer-token">'+token.symbol+' = '+token.value.toLocaleString()+'</span>').join("") +
+    '</div>';
+}
+
+$("exploreBtn").addEventListener("click", exploreNumber);
+explorerNumber.addEventListener("keydown", event => { if (event.key === "Enter") exploreNumber(); });
+exploreNumber();
