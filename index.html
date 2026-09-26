@@ -1,28 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roman Numeral Converter</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Convert and validate Roman numerals."><title>Roman Numeral Toolkit</title><link rel="stylesheet" href="style.css"></head>
 <body>
-    <div class="container">
-        <h1>Roman Numeral Converter</h1>
-        <p>Translate your cryptic Roman Numbers into nice Arabic ones you can read! :P</p>
-        
-        <div class="converter-box">
-            <input type="text" id="romanInput" placeholder="Enter Roman numeral..." autocomplete="off">
-            <button id="macronBtn" title="Add a macron multiplier (+1000x)">+ Macron</button>
-            <button id="convertBtn">Convert</button>
-        </div>
-
-        <div id="resultContainer">
-            <h2>Result:</h2>
-            <p id="outputValue">-</p>
-        </div>
-    </div>
-
-    <script src="converter.js"></script>
-</body>
-</html>
+<main class="container">
+<header><p class="eyebrow">ROMAN NUMERAL TOOLKIT</p><h1>Roman Numeral Converter</h1><p class="intro">Convert, validate, and understand Roman numerals — including the project's extended macron notation.</p></header>
+<section class="converter-card" aria-labelledby="converterHeading">
+<h2 id="converterHeading">Converter</h2>
+<div class="mode-switch" role="group" aria-label="Conversion direction"><button id="romanModeBtn" type="button" aria-pressed="true">Roman → Arabic</button><button id="arabicModeBtn" type="button" aria-pressed="false">Arabic → Roman</button></div>
+<label id="inputLabel" for="numberInput">Roman numeral</label>
+<div class="input-row"><input id="numberInput" type="text" placeholder="Enter Roman numeral…" autocomplete="off" spellcheck="false" aria-describedby="statusMessage"><button id="macronBtn" type="button" title="Add a macron (×1,000)">+ Macron</button></div>
+<div class="actions"><button id="convertBtn" class="primary" type="button">Convert</button><button id="swapBtn" type="button">Swap</button><button id="clearBtn" type="button">Clear</button></div>
+<div id="resultContainer" class="result" aria-live="polite"><span class="result-label">Result</span><strong id="outputValue">—</strong><p id="statusMessage" class="status">Enter a Roman numeral.</p><button id="copyBtn" class="copy" type="button">Copy result</button></div>
+<div class="breakdown-card"><h3>Breakdown</h3><div id="breakdown" class="breakdown" aria-live="polite"></div><p class="hint">Example: <strong>MCMXLIV</strong> = 1000 + 900 + 40 + 4.</p></div>
+</section>
+<section class="history-card" aria-labelledby="historyHeading"><div class="section-heading"><h2 id="historyHeading">Recent conversions</h2><button id="clearHistoryBtn" type="button" class="text-button">Clear history</button></div><ul id="historyList" class="history-list"></ul><p class="privacy-note">History stays in this browser using local storage.</p></section>
+</main><script type="module" src="js/app.js"></script></body></html>
