@@ -10,7 +10,6 @@ export function tokenizeRoman(input) {
     let macrons = 0; let j = i + 1;
     while (cleaned[j] === "\u0304") { macrons++; j++; }
     if (macrons > 4) return { error: "A symbol cannot have more than 4 macrons." };
-    if (char === "I" && macrons > 0) return { error: "The letter I cannot take macrons." };
     tokens.push({ symbol: char + "\u0304".repeat(macrons), base: char, macrons, value: ROMAN_VALUES[char] * 1000 ** macrons });
     i = j;
   }
