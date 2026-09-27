@@ -33,11 +33,6 @@ function parseRomanWithMacrons(s) {
                 return { error: "A symbol cannot have more than 4 macrons." };
             }
 
-            // Enforce 'I' cannot take macrons rule
-            if (baseValue === 1 && macronCount > 0) {
-                return { error: "The letter 'I' cannot have macrons." };
-            }
-
             // Calculate value: base * (1000 ^ macronCount)
             let finalVal = baseValue * Math.pow(1000, macronCount);
             tokens.push({ val: finalVal });
@@ -96,12 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         let targetChar = val[baseLetterIdx];
-
-        // Block macrons on 'I' or 'i'
-        if (targetChar.toUpperCase() === 'I') {
-            outputValue.textContent = "Error: 'I' cannot take macrons.";
-            return;
-        }
 
         // Count how many macrons are already attached to this specific base letter
         let macronCount = 0;
